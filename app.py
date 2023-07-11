@@ -1,5 +1,7 @@
 from flask import Flask, request, send_file
 from flask_swagger import swagger
+import pandas as pd
+import tempfile as tmp
 
 app = Flask(name)
 
@@ -16,7 +18,7 @@ def excel():
     data = pd.DataFrame(df)
     
     # Create path to a tempfile for excel output and zip
-    path_xlsx = tempfile.NamedTemporaryFile(suffix='.xlsx').name
+    path_xlsx = tmp.NamedTemporaryFile(suffix='.xlsx').name
     
     # Write data frame
     data.to_excel(path_xlsx, index=False)
